@@ -3,9 +3,10 @@ const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './manifest.json',
-  // Jika Anda memiliki ikon, tambahkan di sini:
-  // './icon-192.png',
-  // './icon-512.png'
+  './icon-192.png',
+  './icon-512.jpg',
+  './splash-screen-1024.jpg', // Tambahkan ini agar tersimpan di cache
+  './dodiapps-favicon.ico'
 ];
 
 // Tahap Install: Menyimpan aset utama ke dalam cache browser
