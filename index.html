@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
-    <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DodiApps - Manajemen Perawatan Kebun</title>
@@ -19,189 +19,31 @@
       }
     </script>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            background-color: #f4f7f6;
-            margin: 0;
-            padding: 10px;
-            color: #333;
-        }
-        .container {
-            max-width: 100%;
-            margin: 0 auto;
-            background: #fff;
-            padding: 15px;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        h2, h3 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 15px;
-        }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f4f7f6; margin: 0; padding: 10px; color: #333; }
+        .container { max-width: 100%; margin: 0 auto; background: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        h2, h3 { text-align: center; color: #2c3e50; margin-bottom: 20px; }
+        .layout-2col { display: flex; flex-direction: column; gap: 20px; }
+        .card { border: 1px solid #eee; padding: 15px; border-radius: 10px; background: #fff; width: 100%; box-sizing: border-box; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; }
+        select, input { width: 100%; padding: 14px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; box-sizing: border-box; background-color: #fafafa; }
+        .btn-save { background-color: #2980b9; color: white; padding: 18px; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; width: 100%; margin-top: 10px; }
+        .btn-secondary { background-color: #7f8c8d; color: white; padding: 12px; border: none; border-radius: 8px; font-weight: bold; font-size: 14px; cursor: pointer; width: 100%; margin-top: 10px; }
+        .detail-group { margin-top: 15px; padding: 15px; background: #fdfdfd; border-radius: 10px; border: 1px solid #e0e0e0; border-left: 6px solid #27ae60; }
+        .info-box { background: #ffffff; padding: 12px; border-radius: 10px; margin-bottom: 10px; border: 1px solid #e0e0e0; display: flex; flex-direction: column; gap: 5px; }
+        #btnWhatsApp { background-color: #25D366; color: white; padding: 16px; border: none; border-radius: 10px; width: 100%; margin-top: 15px; font-weight: bold; font-size: 16px; cursor: pointer; }
         
-        .layout-2col {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        
-        .card {
-            border: 1px solid #eee;
-            padding: 15px;
-            border-radius: 10px;
-            background: #fff;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-		.form-inline {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-}
-.form-inline label {
-    margin-bottom: 0;
-    flex: 1;
-}
-.form-inline input {
-    flex: 2;
-}
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        select, input {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 16px; 
-            box-sizing: border-box;
-            background-color: #fafafa;
-        }
-        
-        .btn-save {
-            background-color: #2980b9;
-            color: white;
-            padding: 18px; 
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        .table-container {
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            margin-top: 10px;
-            border: 1px solid #eee;
-            border-radius: 8px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-            min-width: 600px;
-        }
-        th, td {
-            padding: 12px 10px;
-            border-bottom: 1px solid #eee;
-        }
-        th {
-            background-color: #2c3e50;
-            color: white;
-        }
-
-        /* TAHAP 3: Optimasi Group Detail */
-        .detail-group {
-            margin-top: 15px;
-            padding: 15px;
-            background: #fdfdfd;
-            border-radius: 10px;
-            border: 1px solid #e0e0e0;
-            border-left: 6px solid #27ae60;
-        }
-        .detail-group h4 {
-            margin-top: 0;
-            margin-bottom: 15px;
-            color: #27ae60;
-            font-size: 1rem;
-            border-bottom: 1px dashed #ddd;
-            padding-bottom: 5px;
-        }
-
-        /* Perbaikan Baris Detail agar tidak dempet */
-        .detail-row {
-            display: flex;
-            flex-direction: column; 
-            gap: 15px; /* Jarak antar input dalam grup detail */
-            margin-bottom: 15px;
-        }
-        
-        /* Memberikan sedikit warna berbeda pada input di dalam detail agar kontras */
-        .detail-group input, .detail-group select {
-            background-color: #fff;
-            border: 1px solid #bdc3c7;
-        }
-
-        .info-box {
-            background: #ffffff;
-            padding: 12px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #e0e0e0;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-        .info-box strong {
-            color: #7f8c8d;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-        }
-        .info-box span {
-            font-size: 1.1rem;
-            word-break: break-all;
-        }
-
-        #btnWhatsApp {
-            background-color: #25D366;
-            color: white;
-            padding: 16px;
-            border: none;
-            border-radius: 10px;
-            width: 100%;
-            margin-top: 15px;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        
-        .btn-hapus-perawatan {
-            background-color: #e74c3c;
-            color: white;
-            border: none;
-            padding: 10px 14px; /* Sedikit diperbesar agar mudah ditekan */
-            border-radius: 6px;
-            font-weight: bold;
-        }
+        .history-card { border: 1px solid #ddd; border-radius: 8px; margin-bottom: 15px; overflow: hidden; background: #fff; }
+        .history-header { background: #f8f9fa; padding: 10px; font-size: 0.85rem; border-bottom: 1px solid #ddd; font-weight: bold; display: flex; justify-content: space-between; }
+        .history-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+        .history-table td { padding: 10px; border-bottom: 1px solid #eee; vertical-align: top; }
+        .btn-delete { color: #e74c3c; border: none; background: none; font-size: 1.2rem; cursor: pointer; padding: 0 5px; }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>Manajemen Perawatan Kebun</h2>
         <div class="layout-2col">
-            <!-- Kolom Kiri: Input Perawatan & Saldo Sementara -->
             <div class="card">
                 <h3>Input Perawatan</h3>
                 <div class="form-group">
@@ -228,49 +70,31 @@
                         <option value="Lain-lain">Lain-lain</option>
                     </select>
                 </div>
-                <!-- Container untuk field dinamis berdasarkan jenis -->
                 <div id="detailPerawatan"></div>
                 <button class="btn-save" id="btnSimpanPerawatan">Simpan Perawatan</button>
 
-                <!-- Input Saldo Biaya Perawatan (sementara, tidak disimpan) -->
-                <div style="margin-top: 20px; border-top: 1px solid #ddd; padding-top: 15px;">
-                    <h4>Saldo Biaya Perawatan s/d Tgl</h4>
-                    <div style="display: flex; gap: 10px;">
-                        <div style="flex: 1;">
-                            <label>Tanggal</label>
-                            <input type="date" id="tglSaldoSementara" style="width: 100%;">
-                        </div>
-                        <div style="flex: 1;">
-                            <label>Jumlah (Rp)</label>
-                            <input type="text" id="jmlSaldoSementara" class="input-rupiah" placeholder="0" style="width: 100%;" inputmode="numeric">
-                        </div>
+                <div style="margin-top: 25px; border-top: 1px solid #eee; padding-top: 20px;">
+                    <h3>Saldo Biaya Perawatan s/d Tgl</h3>
+                    <div class="form-group">
+                        <label>Tanggal</label>
+                        <input type="date" id="tglSaldoSementara">
                     </div>
+                    <div class="form-group">
+                        <label>Jumlah Saldo (Rp)</label>
+                        <input type="text" id="jmlSaldoSementara" class="input-rupiah" placeholder="0" inputmode="numeric">
+                    </div>
+                    <button class="btn-secondary" id="btnSimpanSaldo">Simpan Saldo</button>
                 </div>
             </div>
 
-            <!-- Kolom Kanan: Riwayat Perawatan -->
             <div class="card">
                 <h3>Riwayat Perawatan</h3>
-                <div class="table-container" style="max-height: 400px; overflow-y: auto;">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Tgl</th>
-                                <th>Lokasi</th>
-                                <th>Jenis</th>
-                                <th>Detail</th>
-                                <th>Biaya</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody id="listPerawatan"></tbody>
-                    </table>
-                </div>
-                <!-- Info di bawah tabel -->
-                <div style="margin-top: 15px;">
+                <div id="riwayatTabelContainer"></div>
+                
+                <div style="margin-top: 20px;">
                     <div class="info-box">
                         <strong>Total Biaya Perawatan <span id="bulanTotalPerawatan"></span> :</strong>
-                        <span id="totalBiayaPerawatan" style="font-weight: bold; color: #27ae60;">Rp 0</span>
+                        <span id="totalBiayaPerawatan" style="font-weight: bold; color: #e74c3c;">Rp 0</span>
                     </div>
                     <div class="info-box">
                         <strong>Saldo Biaya Perawatan s/d Tgl <span id="tanggalSaldoTampil"></span> :</strong>
@@ -280,415 +104,245 @@
                         <strong>Sisa saldo saat ini :</strong>
                         <span id="sisaSaldoKanan" style="font-weight: bold; color: #27ae60;">Rp 0</span>
                     </div>
-					<button id="btnWhatsApp" style="background-color: #25D366; color: white; padding: 12px; border: none; border-radius: 8px; width: 100%; margin-top: 15px; font-weight: bold; font-size: 16px; cursor: pointer;">
-     Kirim Laporan via WhatsApp
-</button>
                 </div>
+                <button id="btnWhatsApp">Kirim Laporan via WhatsApp</button>
             </div>
         </div>
     </div>
 
     <script>
-        // ========== STORAGE ==========
         const STORAGE_KEY = 'perawatanKebun';
+        const SALDO_KEY = 'saldoPerawatan';
+        let latestMonth = null;
+        let latestTotal = 0;
 
-        function getPerawatan() {
-            return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-        }
+        function getPerawatan() { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+        function savePerawatan(data) { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
 
-        function savePerawatan(data) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-        }
-
-        // ========== UTILITIES ==========
         function formatInput(el) {
             let val = el.value.replace(/\D/g, '');
             el.value = val ? formatRibuan(val) : '';
         }
-
-        function formatRibuan(angka) {
-            return angka.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-        }
-
+        function formatRibuan(angka) { return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
         function getCleanNumber(id) {
             let el = document.getElementById(id);
             if (!el) return 0;
-            let val = el.value;
-            return val ? parseFloat(val.replace(/\./g, '')) || 0 : 0;
+            return parseFloat(el.value.replace(/\./g, '')) || 0;
         }
+        function formatRp(val) { return 'Rp ' + Math.round(val || 0).toLocaleString('id-ID'); }
+        function formatTanggalTabel(tgl) { return tgl ? tgl.split('-').reverse().join('/') : ''; }
 
-        function formatRp(val) {
-            if (val === undefined || val === null || isNaN(val)) return "Rp 0";
-            return 'Rp ' + Math.round(val).toLocaleString('id-ID');
+        function updateDetailPerawatan() {
+            const jenis = document.getElementById('jenisPerawatan').value;
+            const container = document.getElementById('detailPerawatan');
+            let html = '';
+            if (jenis === 'Pruning' || jenis === 'Pembersihan') {
+                html = `<div class="detail-group"><div class="form-group"><label>Biaya (Rp)</label><input type="text" id="biayaPerawatan" class="input-rupiah" inputmode="numeric"></div></div>`;
+            } else if (jenis === 'Penyemprotan') {
+                html = `<div class="detail-group">
+                    <div class="form-group"><label>Jenis Racun</label><input type="text" id="racunJenis"></div>
+                    <div class="form-group"><label>Jumlah (L)</label><input type="number" id="racunJumlah" step="0.1"></div>
+                    <div class="form-group"><label>Harga/L (Rp)</label><input type="text" id="racunHarga" class="input-rupiah" inputmode="numeric"></div>
+                    <div class="form-group"><label>Upah (Rp)</label><input type="text" id="upahSemprot" class="input-rupiah" inputmode="numeric"></div>
+                </div>`;
+            } else if (jenis === 'Pemupukan') {
+                html = `<div class="detail-group">
+                    <div class="form-group"><label>Jenis Pupuk</label><input type="text" id="pupukJenis"></div>
+                    <div class="form-group"><label>Jumlah (Karung/Kg)</label><input type="number" id="pupukJumlah" step="0.1"></div>
+                    <div class="form-group"><label>Harga/Satuan (Rp)</label><input type="text" id="pupukHarga" class="input-rupiah" inputmode="numeric"></div>
+                    <div class="form-group"><label>Upah Pemupukan (Rp)</label><input type="text" id="upahPemupukan" class="input-rupiah" inputmode="numeric"></div>
+                    <div class="form-group"><label>Ongkir (Rp)</label><input type="text" id="ongkirPupuk" class="input-rupiah" inputmode="numeric"></div>
+                    <div class="form-group"><label>Upah Langsir (Rp)</label><input type="text" id="upahLangsir" class="input-rupiah" inputmode="numeric"></div>
+                </div>`;
+            } else if (jenis === 'Lain-lain') {
+                html = `<div class="detail-group">
+                    <div class="form-group"><label>Keterangan</label><input type="text" id="keteranganLain"></div>
+                    <div class="form-group"><label>Biaya (Rp)</label><input type="text" id="biayaLain" class="input-rupiah" inputmode="numeric"></div>
+                </div>`;
+            }
+            container.innerHTML = html;
+            container.querySelectorAll('.input-rupiah').forEach(i => i.addEventListener('keyup', e => formatInput(e.target)));
         }
-
-        function formatTanggalTabel(tanggal) {
-            if (!tanggal) return '';
-            return tanggal.split('-').reverse().join('/');
-        }
-
-        function formatBulanTeks(bln) {
-            const [tahun, bulan] = bln.split('-');
-            const namaBulan = [
-                'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-                'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
-            ];
-            return `${namaBulan[parseInt(bulan) - 1]} ${tahun}`;
-        }
-
-        // ========== RENDER RIWAYAT ==========
-        let latestMonth = null;
-        let latestTotal = 0;
 
         function renderPerawatan() {
             const data = getPerawatan();
-            data.sort((a, b) => b.tanggal.localeCompare(a.tanggal));
-
-            // Kelompokkan berdasarkan tanggal + lokasi
-            const grouped = {};
-            data.forEach(item => {
-                const key = item.tanggal + '|' + item.lokasi;
-                if (!grouped[key]) grouped[key] = [];
-                grouped[key].push(item);
-            });
-
-            // Hitung total per bulan dan ambil bulan terakhir
-            let bulanan = {};
-            data.forEach(item => {
-                let bln = item.tanggal.substring(0, 7);
-                bulanan[bln] = (bulanan[bln] || 0) + (Number(item.biayaTotal) || 0);
-            });
-            let sortedBln = Object.keys(bulanan).sort();
-            latestMonth = sortedBln.length > 0 ? sortedBln[sortedBln.length - 1] : null;
-            latestTotal = latestMonth ? bulanan[latestMonth] : 0;
-
-            const tbody = document.getElementById('listPerawatan');
-            tbody.innerHTML = '';
-
-            Object.keys(grouped).sort().reverse().forEach(key => {
-                const items = grouped[key];
-                const [tgl, lokasi] = key.split('|');
-                items.forEach((item, index) => {
-                    // Buat detail sesuai jenis
-                    let detailText = '';
-                    if (item.jenis === 'Penyemprotan') {
-                        const subtotalBahan = item.detail.racun.jumlah * item.detail.racun.harga;
-                        detailText = `Biaya ${item.detail.racun.jenis} ${item.detail.racun.jumlah} liter X ${formatRp(item.detail.racun.harga)} = ${formatRp(subtotalBahan)}<br>Upah Semprot = ${formatRp(item.detail.upah)}`;
-                    } else if (item.jenis === 'Pemupukan') {
-                        const subtotalBahan = item.detail.pupuk.jumlah * item.detail.pupuk.harga;
-                        let tambahan = '';
-                        if (item.detail.ongkir || item.detail.upahLangsir) {
-                            tambahan = '<br>';
-                            if (item.detail.ongkir) tambahan += `Ongkir: ${formatRp(item.detail.ongkir)}<br>`;
-                            if (item.detail.upahLangsir) tambahan += `Upah Langsir: ${formatRp(item.detail.upahLangsir)}`;
-                        }
-                        detailText = `Pupuk ${item.detail.pupuk.jenis} ${item.detail.pupuk.jumlah} ${item.detail.pupuk.satuan} X ${formatRp(item.detail.pupuk.harga)} = ${formatRp(subtotalBahan)}<br>Upah Pemupukan = ${formatRp(item.detail.upah)}${tambahan}`;
-                    } else if (item.jenis === 'Lain-lain') {
-                        detailText = `${item.detail.keterangan} (${formatRp(item.detail.biaya)})`;
-                    } else {
-                        detailText = `Biaya ${formatRp(item.detail.biaya)}`;
-                    }
-
-                    // Baris pertama grup tampilkan tanggal & lokasi, berikutnya kosong
-                    if (index === 0) {
-                        tbody.innerHTML += `<tr>
-                            <td>${formatTanggalTabel(tgl)}</td>
-                            <td>${lokasi}</td>
-                            <td>${item.jenis}</td>
-                            <td>${detailText}</td>
-                            <td style="color:#27ae60; font-weight:bold;">${formatRp(item.biayaTotal)}</td>
-                            <td><button class="btn-hapus-perawatan" data-id="${item.id}">X</button></td>
-                        </tr>`;
-                    } else {
-                        tbody.innerHTML += `<tr>
-                            <td></td>
-                            <td></td>
-                            <td>${item.jenis}</td>
-                            <td>${detailText}</td>
-                            <td style="color:#27ae60; font-weight:bold;">${formatRp(item.biayaTotal)}</td>
-                            <td><button class="btn-hapus-perawatan" data-id="${item.id}">X</button></td>
-                        </tr>`;
-                    }
-                });
-            });
-
-            // Event hapus
-            document.querySelectorAll('.btn-hapus-perawatan').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const id = Number(e.target.dataset.id);
-                    if (confirm('Hapus data perawatan ini?')) {
-                        let data = getPerawatan().filter(i => i.id !== id);
-                        savePerawatan(data);
-                        renderPerawatan();
-                        updateInfoPerawatan();
-                    }
-                });
-            });
-
-            updateInfoPerawatan();
-        }
-
-        function updateInfoPerawatan() {
-            let bulanTeks = latestMonth ? formatBulanTeks(latestMonth) : '';
-            document.getElementById('bulanTotalPerawatan').innerText = bulanTeks;
-            document.getElementById('totalBiayaPerawatan').innerText = formatRp(latestTotal);
-
-            let saldo = getCleanNumber('jmlSaldoSementara');
-            let tanggal = document.getElementById('tglSaldoSementara').value;
-            let tanggalTampil = tanggal ? formatTanggalTabel(tanggal) : '';
-            document.getElementById('tanggalSaldoTampil').innerText = tanggalTampil;
-            document.getElementById('saldoTampil').innerText = formatRp(saldo);
-
-            let sisa = saldo - latestTotal;
-            document.getElementById('sisaSaldoKanan').innerText = formatRp(sisa);
-        }
-
-        // ========== DETAIL DINAMIS ==========
-        function updateDetailPerawatan() {
-    const jenis = document.getElementById('jenisPerawatan').value;
-    const container = document.getElementById('detailPerawatan');
-    let html = '';
-
-    if (jenis === 'Pruning') {
-        html = `
-            <div class="detail-group">
-                <div class="form-group form-inline">
-                    <label>Biaya (Rp)</label>
-                    <input type="text" id="biayaPruning" placeholder="0" class="input-rupiah" inputmode="numeric">
-                </div>
-            </div>`;
-    } else if (jenis === 'Pembersihan') {
-        html = `
-            <div class="detail-group">
-                <div class="form-group form-inline">
-                    <label>Biaya (Rp)</label>
-                    <input type="text" id="biayaPembersihan" placeholder="0" class="input-rupiah" inputmode="numeric">
-                </div>
-            </div>`;
-    } else if (jenis === 'Penyemprotan') {
-        html = `
-            <div class="detail-group">
-                <div class="form-group"><label>Jenis Racun</label><input type="text" id="racunJenis"></div>
-                <div class="form-group form-inline"><label>Jumlah (L)</label><input type="number" id="racunJumlah" step="0.1" inputmode="decimal"></div>
-                <div class="form-group form-inline"><label>Harga/L (Rp)</label><input type="text" id="racunHarga" class="input-rupiah" inputmode="numeric"></div>
-                <div class="form-group form-inline"><label>Upah (Rp)</label><input type="text" id="upahSemprot" class="input-rupiah" inputmode="numeric"></div>
-            </div>`;
-    } else if (jenis === 'Pemupukan') {
-        html = `
-            <div class="detail-group">
-                <div class="form-group"><label>Jenis Pupuk</label><input type="text" id="pupukJenis"></div>
-                <div class="form-group form-inline"><label>Jumlah</label><input type="number" id="pupukJumlah" step="0.1"></div>
-                <div class="form-group form-inline"><label>Harga (Rp)</label><input type="text" id="pupukHarga" class="input-rupiah" inputmode="numeric"></div>
-                <div class="form-group form-inline"><label>Upah (Rp)</label><input type="text" id="upahPemupukan" class="input-rupiah" inputmode="numeric"></div>
-            </div>`;
-    } else if (jenis === 'Lain-lain') {
-        html = `
-            <div class="detail-group">
-                <div class="form-group"><label>Keterangan</label><input type="text" id="keteranganLain"></div>
-                <div class="form-group form-inline"><label>Biaya (Rp)</label><input type="text" id="biayaLain" class="input-rupiah" inputmode="numeric"></div>
-            </div>`;
-    }
-
-    container.innerHTML = html;
-
-    // Aktifkan kembali fungsi format rupiah untuk input baru
-    container.querySelectorAll('.input-rupiah').forEach(input => {
-        input.addEventListener('keyup', (e) => formatInput(e.target));
-    });
-}
-        // ========== SIMPAN PERAWATAN ==========
-        function simpanPerawatan() {
-            let lokasi = document.getElementById('lokasiPerawatan').value;
-            let tgl = document.getElementById('tglPerawatan').value;
-            let jenis = document.getElementById('jenisPerawatan').value;
-
-            if (!lokasi || !tgl || !jenis) {
-                alert("Lokasi, tanggal, dan jenis perawatan harus diisi!");
+            const container = document.getElementById('riwayatTabelContainer');
+            container.innerHTML = '';
+            
+            if (data.length === 0) {
+                container.innerHTML = '<p style="text-align:center;color:#777;">Belum ada data riwayat.</p>';
+                updateInfoPerawatan();
                 return;
             }
 
-            let detail = {};
-            let biayaTotal = 0;
-
-            // Ambil data berdasarkan jenis
-            if (jenis === 'Pruning') {
-                let biaya = getCleanNumber('biayaPruning');
-                if (biaya === 0) {
-                    alert("Biaya pruning harus diisi!");
-                    return;
-                }
-                detail.biaya = biaya;
-                biayaTotal = biaya;
-            } else if (jenis === 'Pembersihan') {
-                let biaya = getCleanNumber('biayaPembersihan');
-                if (biaya === 0) {
-                    alert("Biaya pembersihan harus diisi!");
-                    return;
-                }
-                detail.biaya = biaya;
-                biayaTotal = biaya;
-            } else if (jenis === 'Penyemprotan') {
-                let racunJenis = document.getElementById('racunJenis').value;
-                let racunJumlah = parseFloat(document.getElementById('racunJumlah').value) || 0;
-                let racunHarga = getCleanNumber('racunHarga');
-                let upah = getCleanNumber('upahSemprot');
-
-                if (!racunJenis || racunJumlah === 0 || racunHarga === 0 || upah === 0) {
-                    alert("Semua field penyemprotan harus diisi lengkap!");
-                    return;
-                }
-                detail.racun = {
-                    jenis: racunJenis,
-                    jumlah: racunJumlah,
-                    harga: racunHarga
-                };
-                detail.upah = upah;
-                biayaTotal = (racunJumlah * racunHarga) + upah;
-            } else if (jenis === 'Pemupukan') {
-                let pupukJenis = document.getElementById('pupukJenis').value;
-                let pupukJumlah = parseFloat(document.getElementById('pupukJumlah').value) || 0;
-                let pupukSatuan = document.getElementById('pupukSatuan').value;
-                let pupukHarga = getCleanNumber('pupukHarga');
-                let upah = getCleanNumber('upahPemupukan');
-                let ongkir = getCleanNumber('pupukOngkir');
-                let upahLangsir = getCleanNumber('pupukUpahLangsir');
-
-                if (!pupukJenis || pupukJumlah === 0 || pupukHarga === 0 || upah === 0) {
-                    alert("Semua field pemupukan (jenis, jumlah, harga, upah) harus diisi lengkap!");
-                    return;
-                }
-
-                detail.pupuk = {
-                    jenis: pupukJenis,
-                    jumlah: pupukJumlah,
-                    satuan: pupukSatuan,
-                    harga: pupukHarga
-                };
-                detail.upah = upah;
-                detail.ongkir = ongkir;
-                detail.upahLangsir = upahLangsir;
-                biayaTotal = (pupukJumlah * pupukHarga) + upah + ongkir + upahLangsir;
-
-            } else if (jenis === 'Lain-lain') {
-                let keterangan = document.getElementById('keteranganLain').value;
-                let biaya = getCleanNumber('biayaLain');
-                if (!keterangan || biaya === 0) {
-                    alert("Keterangan dan biaya harus diisi!");
-                    return;
-                }
-                detail.keterangan = keterangan;
-                detail.biaya = biaya;
-                biayaTotal = biaya;
-            }
-
-            // Simpan data
-            let data = getPerawatan();
-            data.push({
-                id: Date.now(),
-                tanggal: tgl,
-                lokasi: lokasi,
-                jenis: jenis,
-                detail: detail,
-                biayaTotal: biayaTotal
+            const kelompok = {};
+            data.forEach((item, index) => {
+                const key = `${item.tanggal}-${item.lokasi}`;
+                if (!kelompok[key]) kelompok[key] = [];
+                kelompok[key].push({ ...item, originalIndex: index });
             });
-            savePerawatan(data);
-            renderPerawatan();
 
-            // Reset form
-            document.getElementById('lokasiPerawatan').value = '';
-            document.getElementById('tglPerawatan').value = '';
-            document.getElementById('jenisPerawatan').value = '';
-            document.getElementById('detailPerawatan').innerHTML = '';
+            const sortedKeys = Object.keys(kelompok).sort().reverse();
+
+            sortedKeys.forEach(key => {
+                const items = kelompok[key];
+                let tableHtml = `<div class="history-card">
+                    <div class="history-header">
+                        <span>${formatTanggalTabel(items[0].tanggal)}</span>
+                        <span>${items[0].lokasi}</span>
+                    </div>
+                    <table class="history-table">
+                        <tbody>`;
+                
+                items.forEach(item => {
+                    let d = '';
+                    if (item.jenis === 'Penyemprotan') {
+                        d = `${item.detail.racun.jenis} (${item.detail.racun.jumlah}L) X${formatRibuan(item.detail.racun.harga)} + Upah ${formatRibuan(item.detail.upah)}`;
+                    } else if (item.jenis === 'Pemupukan') {
+                        const subtotal = item.detail.pupuk.jumlah * item.detail.pupuk.harga;
+                        d = `${item.detail.pupuk.jenis} ${item.detail.pupuk.jumlah} X${formatRibuan(item.detail.pupuk.harga)} = ${formatRibuan(subtotal)}, Upah Pemupukan = ${formatRibuan(item.detail.upah)}`;
+                        if (item.detail.ongkir) d += `, Ongkir: ${formatRibuan(item.detail.ongkir)}`;
+                        if (item.detail.upahLangsir) d += `, Upah Langsir: ${formatRibuan(item.detail.upahLangsir)}`;
+                    } else if (item.jenis === 'Lain-lain') {
+                        d = `${item.detail.keterangan} | Biaya ${formatRibuan(item.detail.biayaTotal)}`;
+                    } else {
+                        d = 'Upah Kerja';
+                    }
+
+                    tableHtml += `<tr>
+                        <td><b>${item.jenis === 'Pembersihan' ? 'Pembersihan/Babat' : item.jenis}</b><br><span style="color:#666">${d}</span></td>
+                        <td style="text-align:right; font-weight:bold;">${formatRp(item.biayaTotal)}</td>
+                        <td style="text-align:center;"><button class="btn-delete" onclick="hapusItem(${item.originalIndex})">&times;</button></td>
+                    </tr>`;
+                });
+                tableHtml += `</tbody></table></div>`;
+                container.innerHTML += tableHtml;
+            });
+
+            if (data.length > 0) {
+                const sorted = [...data].sort((a,b) => b.tanggal.localeCompare(a.tanggal));
+                latestMonth = sorted[0].tanggal.substring(0, 7);
+                document.getElementById('bulanTotalPerawatan').innerText = latestMonth;
+                latestTotal = data.filter(i => i.tanggal.startsWith(latestMonth)).reduce((s, i) => s + i.biayaTotal, 0);
+            }
+            updateInfoPerawatan();
         }
 
-        // ========== INIT ==========
+        window.hapusItem = function(index) {
+            if(confirm('Hapus data ini?')) {
+                let data = getPerawatan();
+                data.splice(index, 1);
+                savePerawatan(data);
+                renderPerawatan();
+            }
+        };
+
+        function updateInfoPerawatan() {
+            document.getElementById('totalBiayaPerawatan').innerText = formatRp(latestTotal);
+            let saldo = getCleanNumber('jmlSaldoSementara');
+            document.getElementById('saldoTampil').innerText = formatRp(saldo);
+            document.getElementById('sisaSaldoKanan').innerText = formatRp(saldo - latestTotal);
+            document.getElementById('tanggalSaldoTampil').innerText = formatTanggalTabel(document.getElementById('tglSaldoSementara').value);
+        }
+
+        document.getElementById('btnSimpanSaldo').addEventListener('click', () => {
+            const tgl = document.getElementById('tglSaldoSementara').value;
+            const jml = document.getElementById('jmlSaldoSementara').value;
+            if(!tgl || !jml) return alert('Lengkapi Tanggal dan Jumlah Saldo!');
+            
+            const dataSaldo = { tanggal: tgl, jumlah: jml };
+            localStorage.setItem(SALDO_KEY, JSON.stringify(dataSaldo));
+            alert('Saldo berhasil disimpan!');
+            updateInfoPerawatan();
+        });
+
+        function loadSavedSaldo() {
+            const saved = JSON.parse(localStorage.getItem(SALDO_KEY));
+            if(saved) {
+                document.getElementById('tglSaldoSementara').value = saved.tanggal;
+                document.getElementById('jmlSaldoSementara').value = saved.jumlah;
+                updateInfoPerawatan();
+            }
+        }
+
+        document.getElementById('btnSimpanPerawatan').addEventListener('click', () => {
+            const lokasi = document.getElementById('lokasiPerawatan').value;
+            const tgl = document.getElementById('tglPerawatan').value;
+            const jenis = document.getElementById('jenisPerawatan').value;
+            if(!lokasi || !tgl || !jenis) return alert('Lengkapi data!');
+
+            let detail = {}, total = 0;
+            if (jenis === 'Pruning' || jenis === 'Pembersihan') {
+                total = getCleanNumber('biayaPerawatan');
+            } else if (jenis === 'Penyemprotan') {
+                const j = document.getElementById('racunJenis').value, q = parseFloat(document.getElementById('racunJumlah').value) || 0, h = getCleanNumber('racunHarga'), u = getCleanNumber('upahSemprot');
+                detail.racun = { jenis: j, jumlah: q, harga: h }; detail.upah = u; total = (q * h) + u;
+            } else if (jenis === 'Pemupukan') {
+                const j = document.getElementById('pupukJenis').value, q = parseFloat(document.getElementById('pupukJumlah').value) || 0, h = getCleanNumber('pupukHarga'), u = getCleanNumber('upahPemupukan'), o = getCleanNumber('ongkirPupuk'), l = getCleanNumber('upahLangsir');
+                detail.pupuk = { jenis: j, jumlah: q, harga: h }; detail.upah = u; detail.ongkir = o; detail.upahLangsir = l; total = (q * h) + u + o + l;
+            } else if (jenis === 'Lain-lain') {
+                detail.keterangan = document.getElementById('keteranganLain').value; total = getCleanNumber('biayaLain');
+            }
+
+            let data = getPerawatan();
+            data.push({ tanggal: tgl, lokasi, jenis, detail, biayaTotal: total });
+            savePerawatan(data);
+            renderPerawatan();
+        });
+
+        document.getElementById('jenisPerawatan').addEventListener('change', updateDetailPerawatan);
+        document.getElementById('jmlSaldoSementara').addEventListener('keyup', (e) => {
+            formatInput(e.target);
+            updateInfoPerawatan();
+        });
+        document.getElementById('tglSaldoSementara').addEventListener('change', updateInfoPerawatan);
+        
         document.addEventListener('DOMContentLoaded', () => {
             renderPerawatan();
-
-            document.getElementById('jenisPerawatan').addEventListener('change', updateDetailPerawatan);
-            document.getElementById('btnSimpanPerawatan').addEventListener('click', simpanPerawatan);
-
-            // Event listener untuk input jumlah saldo (rupiah)
-            document.getElementById('jmlSaldoSementara').addEventListener('keyup', function() {
-                formatInput(this);
-                updateInfoPerawatan();
+            loadSavedSaldo();
+        });
+        
+        document.getElementById('btnWhatsApp').addEventListener('click', () => {
+            const data = getPerawatan();
+            if (data.length === 0) return alert('Tidak ada data untuk dikirim.');
+            
+            let teks = '*LAPORAN PERAWATAN KEBUN*\n\n';
+            const kelompok = {};
+            data.forEach(item => {
+                const key = `${item.tanggal}-${item.lokasi}`;
+                if (!kelompok[key]) kelompok[key] = [];
+                kelompok[key].push(item);
             });
 
-            document.getElementById('tglSaldoSementara').addEventListener('change', function() {
-                updateInfoPerawatan();
+            const sortedKeys = Object.keys(kelompok).sort().reverse();
+            sortedKeys.forEach(key => {
+                const items = kelompok[key];
+                teks += `📅 *${formatTanggalTabel(items[0].tanggal)}* | 📍 *${items[0].lokasi}*\n`;
+                items.forEach(item => {
+                    let detail = '';
+                    if (item.jenis === 'Penyemprotan') {
+                        detail = `${item.detail.racun.jenis} (${item.detail.racun.jumlah}L) X${formatRp(item.detail.racun.harga)} + Upah ${formatRp(item.detail.upah)}`;
+                    } else if (item.jenis === 'Pemupukan') {
+                        const subtotal = item.detail.pupuk.jumlah * item.detail.pupuk.harga;
+                        detail = `${item.detail.pupuk.jenis} ${item.detail.pupuk.jumlah}Karung X${formatRp(item.detail.pupuk.harga)} = ${formatRp(subtotal)}, Upah Pemupukan = ${formatRp(item.detail.upah)}`;
+                        if (item.detail.ongkir) detail += `, Ongkir: ${formatRp(item.detail.ongkir)}`;
+                        if (item.detail.upahLangsir) detail += `, Upah Langsir: ${formatRp(item.detail.upahLangsir)}`;
+                    } else if (item.jenis === 'Lain-lain') {
+                        detail = `${item.detail.keterangan} | Biaya ${formatRp(item.detail.biayaTotal)}`;
+                    } else {
+                        detail = 'Upah Kerja';
+                    }
+                    teks += `• ${item.jenis === 'Pembersihan' ? 'Pembersihan/Babat' : item.jenis} | ${detail} | *${formatRp(item.biayaTotal)}*\n`;
+                });
+                teks += '\n';
             });
-			
-// ========== TOMBOL KIRIM WHATSAPP ==========
-document.getElementById('btnWhatsApp').addEventListener('click', function() {
-    const data = getPerawatan();
-    if (data.length === 0) {
-        alert("Belum ada data perawatan untuk dilaporkan.");
-        return;
-    }
 
-    // Urutkan dari tanggal terbaru ke lama
-    data.sort((a, b) => b.tanggal.localeCompare(a.tanggal));
+            teks += `*Total Biaya Perawatan Bulan(${document.getElementById('bulanTotalPerawatan').innerText}): ${document.getElementById('totalBiayaPerawatan').innerText}*\n`;
+            teks += `*Saldo s/d ${document.getElementById('tanggalSaldoTampil').innerText}: ${document.getElementById('saldoTampil').innerText}*\n`;
+            teks += `*Sisa Saldo: ${document.getElementById('sisaSaldoKanan').innerText}*`;
 
-    // Kelompokkan berdasarkan lokasi dan tanggal
-    const groups = {};
-    data.forEach(item => {
-        const key = `${item.lokasi}|${item.tanggal}`;
-        if (!groups[key]) groups[key] = [];
-        groups[key].push(item);
-    });
-
-    let teks = "LAPORAN PERAWATAN KEBUN\n\n";
-
-    // Urutkan grup berdasarkan tanggal terbaru
-    const sortedKeys = Object.keys(groups).sort().reverse();
-
-    sortedKeys.forEach(key => {
-        const [lokasi, tgl] = key.split('|');
-        const items = groups[key];
-        const tglFormatted = formatTanggalTabel(tgl); // dd/mm/yyyy
-
-        teks += `Perawatan Kebun ${lokasi}, tanggal ${tglFormatted}\n`;
-
-        items.forEach(item => {
-    let detail = '';
-    if (item.jenis === 'Pruning' || item.jenis === 'Pembersihan') {
-        detail = `Biaya ${formatRp(item.detail.biaya)}`;
-    } else if (item.jenis === 'Penyemprotan') {
-        const racun = item.detail.racun;
-        const subtotal = racun.jumlah * racun.harga;
-        detail = `${racun.jenis} ${racun.jumlah} liter X ${formatRp(racun.harga)} = ${formatRp(subtotal)}, Upah Semprot = ${formatRp(item.detail.upah)}`;
-    } else if (item.jenis === 'Pemupukan') {
-        const pupuk = item.detail.pupuk;
-        const subtotal = pupuk.jumlah * pupuk.harga;
-        detail = `Pupuk ${pupuk.jenis} ${pupuk.jumlah} ${pupuk.satuan} X ${formatRp(pupuk.harga)} = ${formatRp(subtotal)}, Upah Pemupukan = ${formatRp(item.detail.upah)}`;
-        if (item.detail.ongkir) detail += `, Ongkir: ${formatRp(item.detail.ongkir)}`;
-        if (item.detail.upahLangsir) detail += `, Upah Langsir: ${formatRp(item.detail.upahLangsir)}`;
-    } else if (item.jenis === 'Lain-lain') {
-        detail = `${item.detail.keterangan} | Biaya ${formatRp(item.detail.biaya)}`;
-    }
-        let jenisTampil = item.jenis;
-    if (jenisTampil === 'Pembersihan') jenisTampil = 'Pembersihan/Babat';
-    
-    teks += `* ${jenisTampil} | ${detail} | *${formatRp(item.biayaTotal)}*\n`;
-});
-        teks += '\n'; // pemisah antar grup
-    });
-
-    // Ringkasan
-    const bulanTotal = document.getElementById('bulanTotalPerawatan').innerText;
-    const totalBiaya = document.getElementById('totalBiayaPerawatan').innerText;
-    const saldoTampil = document.getElementById('saldoTampil').innerText;
-    const sisaSaldo = document.getElementById('sisaSaldoKanan').innerText;
-    const tanggalSaldo = document.getElementById('tanggalSaldoTampil').innerText;
-
-    teks += `Total Biaya Perawatan (${bulanTotal}): ${totalBiaya}\n`;
-    teks += `Saldo Biaya Perawatan${tanggalSaldo ? ' (s.d. ' + tanggalSaldo + ')' : ''}: ${saldoTampil}\n`;
-    teks += `Sisa Saldo Biaya Perawatan: ${sisaSaldo}`;
-
-    const url = `https://wa.me/?text=${encodeURIComponent(teks)}`;
-    window.open(url, '_blank');
-});
- });       
+            window.open(`https://wa.me/?text=${encodeURIComponent(teks)}`, '_blank');
+        });
     </script>
 </body>
 </html>
