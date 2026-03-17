@@ -58,18 +58,18 @@
             margin-bottom: 15px;
         }
 		.form-inline {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-        }
-        .form-inline label {
-            margin-bottom: 0; /* Menghilangkan jarak bawah label */
-            flex: 1; /* Label mengambil ruang yang tersedia */
-        }
-        .form-inline input {
-            flex: 2; /* Kotak input sedikit lebih lebar dari label */
-        }
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+.form-inline label {
+    margin-bottom: 0;
+    flex: 1;
+}
+.form-inline input {
+    flex: 2;
+}
         label {
             display: block;
             margin-bottom: 8px;
@@ -445,123 +445,57 @@
 
         // ========== DETAIL DINAMIS ==========
         function updateDetailPerawatan() {
-            const jenis = document.getElementById('jenisPerawatan').value;
-            const container = document.getElementById('detailPerawatan');
-            let html = '';
+    const jenis = document.getElementById('jenisPerawatan').value;
+    const container = document.getElementById('detailPerawatan');
+    let html = '';
 
-            if (jenis === 'Pruning') {
-                html = `
-                    <div class="detail-group">
-                        <h4>Pruning Pelepah</h4>
-                        <div class="form-group form-inline">
-                            <label>Biaya (Rp)</label>
-                            <input type="text" id="biayaPruning" placeholder="0" class="input-rupiah" inputmode="numeric>
-                        </div>
-                    </div>
-                `;
-            } else if (jenis === 'Pembersihan') {
-                html = `
-                    <div class="detail-group">
-                        <h4>Pembersihan/Babat</h4>
-                        <div class="form-group form-inline">
-                            <label>Biaya (Rp)</label>
-                            <input type="text" id="biayaPembersihan" placeholder="0" class="input-rupiah" inputmode="numeric>
-                        </div>
-                    </div>
-                `;
-            } else if (jenis === 'Penyemprotan') {
-                html = `
-                    <div class="detail-group">
-                        <h4>Biaya Bahan</h4>
-                        <div class="detail-row">
-                            <div class="form-group">
-                                <label>Jenis Racun</label>
-                                <input type="text" id="racunJenis" placeholder="misal centatop, bablas, starlon">
-                            </div>
-                            <div class="form-group">
-                                <label>Jumlah (liter)</label>
-                                <input type="number" id="racunJumlah" step="0.1" min="0" inputmode="decimal">
-                            </div>
-                            <div class="form-group">
-                                <label>Harga per liter (Rp)</label>
-                                <input type="text" id="racunHarga" class="input-rupiah" inputmode="numeric">
-                            </div>
-                        </div>
-                        <h4 style="margin-top:15px;">Biaya Upah</h4>
-                        <div class="form-group">
-                            <label>Upah Semprot (Rp)</label>
-                            <input type="text" id="upahSemprot" class="input-rupiah" inputmode="numeric">
-                        </div>
-                    </div>
-                `;
-            } else if (jenis === 'Pemupukan') {
-                html = `
-                    <div class="detail-group">
-                        <h4>Biaya Bahan Pupuk</h4>
-                        <div class="detail-row">
-                            <div class="form-group">
-                                <label>Jenis Pupuk</label>
-                                <input type="text" id="pupukJenis" placeholder="misal Urea, Dolomit, KCL">
-                            </div>
-                            <div class="form-group">
-                                <label>Jumlah</label>
-                                <input type="number" id="pupukJumlah" step="0.1" min="0" inputmode="decimal">
-                            </div>
-                            <div class="form-group">
-                                <label>Satuan</label>
-                                <select id="pupukSatuan">
-                                    <option value="kg">kg</option>
-                                    <option value="karung">karung</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Harga per satuan (Rp)</label>
-                                <input type="text" id="pupukHarga" class="input-rupiah" inputmode="numeric">
-                            </div>
-                        </div>
-                        <h4 style="margin-top:15px;">Biaya Upah Pemupukan</h4>
-                        <div class="form-group">
-                            <label>Upah (Rp)</label>
-                            <input type="text" id="upahPemupukan" class="input-rupiah" inputmode="numeric">
-                        </div>
-                        <h4 style="margin-top:15px;">Biaya Tambahan</h4>
-                        <div class="form-group">
-                            <label>Ongkir & Lain-lain (Rp)</label>
-                            <input type="text" id="pupukOngkir" class="input-rupiah" inputmode="numeric">
-                        </div>
-                        <div class="form-group">
-                            <label>Upah Langsir (Rp)</label>
-                            <input type="text" id="pupukUpahLangsir" class="input-rupiah" inputmode="numeric">
-                        </div>
-                    </div>
-                `;
-            } else if (jenis === 'Lain-lain') {
-                html = `
-                    <div class="detail-group">
-                        <h4>Lain-lain</h4>
-                        <div class="form-group">
-                            <label>Keterangan</label>
-                            <input type="text" id="keteranganLain" placeholder="misal perbaikan jalan">
-                        </div>
-                        <div class="form-group">
-                            <label>Biaya (Rp)</label>
-                            <input type="text" id="biayaLain" placeholder="0" class="input-rupiah" inputmode="numeric">
-                        </div>
-                    </div>
-                `;
-            } else {
-                container.innerHTML = '';
-                return;
-            }
+    if (jenis === 'Pruning') {
+        html = `
+            <div class="detail-group">
+                <div class="form-group form-inline">
+                    <label>Biaya (Rp)</label>
+                    <input type="text" id="biayaPruning" placeholder="0" class="input-rupiah" inputmode="numeric">
+                </div>
+            </div>`;
+    } else if (jenis === 'Pembersihan') {
+        html = `
+            <div class="detail-group">
+                <div class="form-group form-inline">
+                    <label>Biaya (Rp)</label>
+                    <input type="text" id="biayaPembersihan" placeholder="0" class="input-rupiah" inputmode="numeric">
+                </div>
+            </div>`;
+    } else if (jenis === 'Penyemprotan') {
+        html = `
+            <div class="detail-group">
+                <div class="form-group"><label>Jenis Racun</label><input type="text" id="racunJenis"></div>
+                <div class="form-group form-inline"><label>Jumlah (L)</label><input type="number" id="racunJumlah" step="0.1" inputmode="decimal"></div>
+                <div class="form-group form-inline"><label>Harga/L (Rp)</label><input type="text" id="racunHarga" class="input-rupiah" inputmode="numeric"></div>
+                <div class="form-group form-inline"><label>Upah (Rp)</label><input type="text" id="upahSemprot" class="input-rupiah" inputmode="numeric"></div>
+            </div>`;
+    } else if (jenis === 'Pemupukan') {
+        html = `
+            <div class="detail-group">
+                <div class="form-group"><label>Jenis Pupuk</label><input type="text" id="pupukJenis"></div>
+                <div class="form-group form-inline"><label>Jumlah</label><input type="number" id="pupukJumlah" step="0.1"></div>
+                <div class="form-group form-inline"><label>Harga (Rp)</label><input type="text" id="pupukHarga" class="input-rupiah" inputmode="numeric"></div>
+                <div class="form-group form-inline"><label>Upah (Rp)</label><input type="text" id="upahPemupukan" class="input-rupiah" inputmode="numeric"></div>
+            </div>`;
+    } else if (jenis === 'Lain-lain') {
+        html = `
+            <div class="detail-group">
+                <div class="form-group"><label>Keterangan</label><input type="text" id="keteranganLain"></div>
+                <div class="form-group form-inline"><label>Biaya (Rp)</label><input type="text" id="biayaLain" class="input-rupiah" inputmode="numeric"></div>
+            </div>`;
+    }
 
-            container.innerHTML = html;
+    container.innerHTML = html;
 
-            // Tambahkan event listener untuk format rupiah pada input baru
-            container.querySelectorAll('.input-rupiah').forEach(input => {
-                input.addEventListener('keyup', (e) => formatInput(e.target));
-            });
-        }
-
+    // Aktifkan kembali fungsi format rupiah untuk input baru
+    container.querySelectorAll('.input-rupiah').forEach(input => {
+        input.addEventListener('keyup', (e) => formatInput(e.target));
+    });
+}
         // ========== SIMPAN PERAWATAN ==========
         function simpanPerawatan() {
             let lokasi = document.getElementById('lokasiPerawatan').value;
