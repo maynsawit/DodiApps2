@@ -1,6 +1,7 @@
 {
   "name": "DodiApps - Perawatan Kebun",
-  "short_name": "DodiApps",
+  "short_name": "DodiApps2",
+  "description": "Aplikasi pencatatan perawatan kebun",
   "icons": [
     {
       "src": "icon-192.png",
