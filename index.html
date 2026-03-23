@@ -317,7 +317,7 @@
             const sortedKeys = Object.keys(kelompok).sort().reverse();
             sortedKeys.forEach(key => {
                 const items = kelompok[key];
-                teks += `📅 *${formatTanggalTabel(items[0].tanggal)}* | 📍 *${items[0].lokasi}*\n`;
+                teks += `Tanggal *${formatTanggalTabel(items[0].tanggal)}* | Lokasi *${items[0].lokasi}*\n`;
                 items.forEach(item => {
                     let detail = '';
                     if (item.jenis === 'Penyemprotan') {
