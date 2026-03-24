@@ -206,14 +206,14 @@
                     } else if (item.jenis === 'Lain-lain') {
                         d = `${item.detail.keterangan} | Biaya ${formatRibuan(item.detail.biayaTotal)}`;
                     } else {
-                        d = 'Upah Kerja';
+                        d = 'Upah ';
                     }
 
                     tableHtml += `<tr>
                         <td><b>${item.jenis === 'Pembersihan' ? 'Pembersihan/Babat' : item.jenis}</b><br><span style="color:#666">${d}</span></td>
                         <td style="text-align:right; font-weight:bold;">${formatRp(item.biayaTotal)}</td>
                         <td style="text-align:center;"><button class="btn-delete" onclick="hapusItem(${item.originalIndex})">&times;</button></td>
-                    </tr>`;
+                     </tr>`;
                 });
                 tableHtml += `</tbody></table></div>`;
                 container.innerHTML += tableHtml;
@@ -321,18 +321,20 @@
                 items.forEach(item => {
                     let detail = '';
                     if (item.jenis === 'Penyemprotan') {
-                        detail = `${item.detail.racun.jenis} (${item.detail.racun.jumlah}L) X${formatRp(item.detail.racun.harga)} + Upah ${formatRp(item.detail.upah)}`;
+                        const subtotalRacun = item.detail.racun.jumlah * item.detail.racun.harga;
+                        // Menampilkan jumlah, harga per item, dan subtotal (jumlah x harga)
+                       detail = `${item.detail.racun.jenis} ${item.detail.racun.jumlah}L X${formatRp(item.detail.racun.harga)} = ${formatRp(subtotalRacun)}, Upah : ${formatRp(item.detail.upah)}`;
                     } else if (item.jenis === 'Pemupukan') {
                         const subtotal = item.detail.pupuk.jumlah * item.detail.pupuk.harga;
-                        detail = `${item.detail.pupuk.jenis} ${item.detail.pupuk.jumlah}Karung X${formatRp(item.detail.pupuk.harga)} = ${formatRp(subtotal)}, Upah Pemupukan = ${formatRp(item.detail.upah)}`;
+                        detail = `${item.detail.pupuk.jenis} ${item.detail.pupuk.jumlah}Karung X${formatRp(item.detail.pupuk.harga)} = ${formatRp(subtotal)}, Upah : ${formatRp(item.detail.upah)}`;
                         if (item.detail.ongkir) detail += `, Ongkir: ${formatRp(item.detail.ongkir)}`;
                         if (item.detail.upahLangsir) detail += `, Upah Langsir: ${formatRp(item.detail.upahLangsir)}`;
                     } else if (item.jenis === 'Lain-lain') {
                         detail = `${item.detail.keterangan} | Biaya ${formatRp(item.detail.biayaTotal)}`;
                     } else {
-                        detail = 'Upah Kerja';
+                        detail = 'Upah ';
                     }
-                    teks += `• ${item.jenis === 'Pembersihan' ? 'Pembersihan/Babat' : item.jenis} | ${detail} | *${formatRp(item.biayaTotal)}*\n`;
+                    teks += `• ${item.jenis === 'Pembersihan' ? 'Pembersihan/Babat' : item.jenis} | ${detail}, *${formatRp(item.biayaTotal)}*\n`;
                 });
                 teks += '\n';
             });
